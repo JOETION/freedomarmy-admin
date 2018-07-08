@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.snow</groupId>
+    <artifactId>freedomarmy-admin</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>freedomarmy-admin-app</module>
+        <module>freedomarmy-admin-base</module>
+    </modules>
+
+    <properties>
+        <javax-servlet.version>3.0.1</javax-servlet.version>
+        <log4j.version>1.2.17</log4j.version>
+        <commons-lang3.version>3.1</commons-lang3.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <commons-configuration.version>1.10</commons-configuration.version>
+        <commons-codec.version>1.8</commons-codec.version>
+        <commons-collections.version>3.2.1</commons-collections.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-beanutils.version>1.8.3</commons-beanutils.version>
+        <junit.version>4.11</junit.version>
+        <fastjson.version>1.1.41</fastjson.version>
+        <spring.version>3.2.9.RELEASE</spring.version>
+        <spring.security.version>3.2.5.RELEASE</spring.security.version>
+        <servlet.api.version>2.5</servlet.api.version>
+        <jackson-asl-version>1.9.13</jackson-asl-version>
+        <version.jackson>2.4.4</version.jackson>
+    </properties>
+
+    <!--  maven默认使用的是1.5的编译器，这里有java8的案列，故用1.8的编译器-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
