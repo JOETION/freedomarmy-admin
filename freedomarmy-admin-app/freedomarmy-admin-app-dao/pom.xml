@@ -17,7 +17,6 @@
     </parent>
 
     <dependencies>
-
         <dependency>
             <groupId>com.snow</groupId>
             <artifactId>freedomarmy-admin-app-core</artifactId>
