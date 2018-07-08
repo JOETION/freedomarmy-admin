@@ -15,5 +15,12 @@ import com.snow.freedomarmy.admin.app.pojo.AdminDto;
  */
 public interface AdminService {
 
+    /**
+     * 通过登录名和密码获取管理员信息
+     *
+     * @param loginName
+     * @param password
+     * @return
+     */
     AdminDto getAdminByName(String loginName, String password);
 }

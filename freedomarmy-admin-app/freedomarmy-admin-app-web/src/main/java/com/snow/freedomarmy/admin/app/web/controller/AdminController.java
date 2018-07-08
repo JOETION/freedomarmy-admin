@@ -24,7 +24,6 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String index() {
         return "login";
