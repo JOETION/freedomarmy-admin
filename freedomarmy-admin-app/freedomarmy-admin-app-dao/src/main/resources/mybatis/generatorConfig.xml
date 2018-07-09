@@ -14,7 +14,7 @@
 
         <!--数据库没有密码时，password字段值为空就好-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/website_preview" userId="root"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/freedomarmy" userId="root"
                         password="123456"/>
 
         <javaModelGenerator targetPackage="com.snow.freedomarmy.admin.app.core.model"
