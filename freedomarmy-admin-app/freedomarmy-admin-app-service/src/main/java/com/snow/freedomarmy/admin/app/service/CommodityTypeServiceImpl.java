@@ -12,8 +12,13 @@ import com.snow.freedomarmy.admin.app.api.CommodityTypeService;
 import com.snow.freedomarmy.admin.app.core.model.CommodityType;
 import com.snow.freedomarmy.admin.app.core.model.CommodityTypeExample;
 import com.snow.freedomarmy.admin.app.dao.mapper.CommodityTypeMapper;
+import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
+import com.snow.freedomarmy.admin.app.pojo.CommodityTypeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service("commodityTypeService")
 public class CommodityTypeServiceImpl implements CommodityTypeService {
@@ -49,4 +54,36 @@ public class CommodityTypeServiceImpl implements CommodityTypeService {
         return "success";
 
     }
+
+    @Override
+    public List<CommodityTypeDto> getAllType() {
+        CommodityTypeExample commodityTypeExample = new CommodityTypeExample();
+        commodityTypeExample.createCriteria();
+        List<CommodityType> commodityTypes = commodityTypeMapper.selectByExample(commodityTypeExample);
+        List<CommodityTypeDto> commodityTypeDtos = new ArrayList<>();
+        for (CommodityType commodityType : commodityTypes) {
+            CommodityTypeDto commodityTypeDto = new CommodityTypeDto();
+            commodityTypeDto.setId(commodityType.getId());
+            commodityTypeDto.setType(commodityType.getParent());
+            commodityTypeDto.setTypeName(commodityType.getTypeName());
+            commodityTypeDtos.add(commodityTypeDto);
+        }
+        return commodityTypeDtos;
+    }
+
+    /**
+     * 可能有重复的，故不用list查询
+     * @param id
+     * @return
+     */
+    @Override
+    public CommodityTypeDto getTypeById(int id) {
+        CommodityType commodityType = commodityTypeMapper.selectByPrimaryKey(id);
+        CommodityTypeDto commodityTypeDto = new CommodityTypeDto();
+        commodityTypeDto.setId(commodityType.getId());
+        commodityTypeDto.setType(commodityType.getParent());
+        commodityTypeDto.setTypeName(commodityType.getTypeName());
+        return commodityTypeDto;
+    }
+
 }

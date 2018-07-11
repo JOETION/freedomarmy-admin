@@ -9,25 +9,55 @@ package com.snow.freedomarmy.admin.app.web.controller;
 
 
 import com.snow.freedomarmy.admin.app.api.CommodityService;
+import com.snow.freedomarmy.admin.app.api.CommodityTypeService;
 import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.io.File;
 
 @Controller
 @RequestMapping("/freedomarmy/admin/commodity")
 public class CommodityController {
 
+    private static final String FILE_TYPE_JPG = ".jpg";
 
     @Autowired
     CommodityService commodityService;
 
+    @Autowired
+    CommodityTypeService commodityTypeService;
+
+    @RequestMapping("/add/show")
+    public ModelAndView show() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("commodity_add");
+        modelAndView.addObject("type", commodityTypeService.getAllType());
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public String addCommodity(@RequestBody CommodityDto commodityDto) {
+    public String addCommodity(@RequestBody CommodityDto commodityDto, @RequestParam("image") MultipartFile file) {
+        // 判断文件是否为空
+        if (!file.isEmpty() && file.getOriginalFilename().toLowerCase().endsWith(FILE_TYPE_JPG)) {
+            try {
+                File upload = new File("E://upload");
+                if (upload.exists()) {
+                    upload.delete();
+                } else {
+                    upload.createNewFile();
+                }
+            } catch (Exception e) {
+                System.out.println("保存文件失败!");
+            }
+        }
         return commodityService.addCommodity(commodityDto);
     }
+
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
@@ -40,5 +70,13 @@ public class CommodityController {
     public String updateCommodity(@RequestBody CommodityDto commodityDto) {
         return commodityService.updateCommodity(commodityDto);
     }
+
+
+    @RequestMapping(value = "/updateType", method = RequestMethod.GET)
+    @ResponseBody
+    public String updateCommodityType(@RequestParam("commodityId") int commodityId, @RequestParam("commodityTypeId") int commodityTypeId) {
+        return commodityService.updateCommodityType(commodityId, commodityTypeId);
+    }
+
 
 }

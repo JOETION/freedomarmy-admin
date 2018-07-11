@@ -16,6 +16,9 @@ import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service("commodityService")
 public class CommodityServiceImpl implements CommodityService {
 
@@ -53,5 +56,38 @@ public class CommodityServiceImpl implements CommodityService {
         commodityMapper.updateByExampleSelective(commodity, commodityExample);
         return "success";
 
+    }
+
+    @Override
+    public List<CommodityDto> getCommodity(int pageNum, int pageSize, String sortColumn, String sortDir, String searchValue) {
+        List<CommodityDto> list = new ArrayList<>();
+        List<Commodity> commodities = commodityMapper.selectByLimit(pageNum, pageSize, sortColumn, sortDir, searchValue);
+        for (Commodity commodity : commodities) {
+            CommodityDto commodityDto = new CommodityDto.Builder()
+                    .setCommodityId(commodity.getId())
+                    .setCommodityName(commodity.getCommodityName())
+                    .setCommodityPrice(commodity.getCommodityPrice())
+                    .setCommodityType(commodity.getCommodityTypeParent())
+                    .build();
+            list.add(commodityDto);
+        }
+        return list;
+    }
+
+    @Override
+    public int count() {
+        CommodityExample commodityExample = new CommodityExample();
+        commodityExample.createCriteria();
+        return commodityMapper.countByExample(commodityExample);
+    }
+
+    @Override
+    public String updateCommodityType(int commodityId, int commodityTypeId) {
+        //查询数据库时失败记得抛出异常
+        Commodity commodity = new Commodity();
+        commodity.setId(commodityId);
+        commodity.setCommodityTypeParent(commodityTypeId);
+        commodityMapper.updateByPrimaryKeySelective(commodity);
+        return "success";
     }
 }

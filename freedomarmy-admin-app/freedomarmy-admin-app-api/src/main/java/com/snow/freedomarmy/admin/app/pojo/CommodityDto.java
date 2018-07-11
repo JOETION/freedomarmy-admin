@@ -21,11 +21,33 @@ public class CommodityDto implements Serializable {
     private int commodityType;
     private String commodityImage;
 
+
+    public void setCommodityId(int commodityId) {
+        this.commodityId = commodityId;
+    }
+
+    public void setCommodityName(String commodityName) {
+        this.commodityName = commodityName;
+    }
+
+    public void setCommodityPrice(String commodityPrice) {
+        this.commodityPrice = commodityPrice;
+    }
+
+    public void setCommodityType(int commodityType) {
+        this.commodityType = commodityType;
+    }
+
+    public void setCommodityImage(String commodityImage) {
+        this.commodityImage = commodityImage;
+    }
+
     private CommodityDto(Builder builder) {
         this.commodityImage = builder.commodityImage;
         this.commodityName = builder.commodityName;
         this.commodityPrice = builder.commodityPrice;
         this.commodityType = builder.commodityType;
+        this.commodityId = builder.commodityId;
     }
 
     public int getCommodityId() {
