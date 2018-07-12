@@ -14,8 +14,9 @@
 
         <!--数据库没有密码时，password字段值为空就好-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/freedomarmy" userId="root"
-                        password="123456"/>
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/freedomarmy"
+                        userId="root"
+                        password="root"/>
 
         <javaModelGenerator targetPackage="com.snow.freedomarmy.admin.app.core.model"
                             targetProject="../freedomarmy-admin-app-core/src/main/java">
@@ -34,11 +35,27 @@
         </javaClientGenerator>
 
         <!--下面是需要生成的表名-->
-        <table tableName="commodity">
-            <generatedKey column="id" sqlStatement="MySql"
-                          identity="true"/>
-        </table>
-        <table tableName="orders">
+        <!--<table tableName="commodity">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="commodity_comment">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="commodity_image">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="commodity_type">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="orders">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <table tableName="user">
             <generatedKey column="id" sqlStatement="MySql"
                           identity="true"/>
         </table>

@@ -1,6 +1,6 @@
 package com.snow.freedomarmy.admin.app.service;
 
-/* 				    
+/*
  **********************************************
  *      DATE           PERSON       REASON
  *    2018/7/8          FXY        Created
@@ -15,9 +15,13 @@ import com.snow.freedomarmy.admin.app.core.model.CommodityExample;
 import com.snow.freedomarmy.admin.app.dao.mapper.CommodityMapper;
 import com.snow.freedomarmy.admin.app.dao.mapper.extend.CommodityExtendMapper;
 import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
+import com.snow.freedomarmy.admin.app.pojo.OrdersDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +39,29 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Autowired
     CommodityTypeService commodityTypeService;
+
+
+    @Override
+    public List<CommodityDto> OrdersToCommodityLsit(List<OrdersDto> ordersDtos) {
+
+        CommodityExample commodityExample = new CommodityExample();
+
+        List<Integer> list = new ArrayList<>();
+        for (OrdersDto ordersDto : ordersDtos) {
+            list.add(ordersDto.getCommodityId());
+        }
+        commodityExample.createCriteria().andIdIn(list);
+        List<Commodity> commodities = commodityMapper.selectByExample(commodityExample);
+        List<CommodityDto> commodityDtoList = new ArrayList<>();
+        for (Commodity commodity : commodities) {
+            CommodityDto commodityDto = new CommodityDto.Builder()
+                    .setCommodityId(commodity.getId())
+                    .setCommodityName(commodity.getCommodityName())
+                    .build();
+            commodityDtoList.add(commodityDto);
+        }
+        return commodityDtoList;
+    }
 
     @Override
     public int addCommodity(CommodityDto commodityDto) {
@@ -69,7 +96,6 @@ public class CommodityServiceImpl implements CommodityService {
         commodityExample.createCriteria().andIdEqualTo(commodityDto.getCommodityId());
         commodityMapper.updateByExampleSelective(commodity, commodityExample);
         return "success";
-
     }
 
     @Override
@@ -121,7 +147,7 @@ public class CommodityServiceImpl implements CommodityService {
                     .setCommodityType(commodity.getParent())
                     .setCommodityStock(commodity.getStock())
                     .setCommodityImage(commodity.getCommodityName())
-                    .setCommodityIntegral(commodity.getIntegral()==null ? 0 : commodity.getIntegral())
+                    .setCommodityIntegral(commodity.getIntegral() == null ? 0 : commodity.getIntegral())
                     .build();
             commodityDtos.add(commodityDto);
         }
