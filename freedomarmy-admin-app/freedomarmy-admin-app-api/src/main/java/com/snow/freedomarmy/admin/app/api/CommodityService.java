@@ -28,6 +28,25 @@ public interface CommodityService {
      */
     public String deleteCommodityById(int commodityId);
 
+
+    /**
+     * 通过商品编号移除商品信息
+     *
+     * @param commodityId
+     * @return
+     */
+    public String removeCommodityById(int commodityId);
+
+
+    /**
+     * 通过商品编号恢复商品
+     *
+     * @param commodityId
+     * @return
+     */
+    public String recycleCommodityById(int commodityId);
+
+
     /**
      * @param ordersDtos
      * @return 通过Orders 获取id

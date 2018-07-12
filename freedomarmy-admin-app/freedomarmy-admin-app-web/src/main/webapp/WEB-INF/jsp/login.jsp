@@ -18,44 +18,73 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/PIE_IE678.js"></script>
     <![endif]-->
     <link href="${pageContext.request.contextPath}/res/css/H-ui.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/font-awesome/font-awesome.min.css"/>
     <link href="${pageContext.request.contextPath}/res/iconfont/iconfont.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/resource/css/common/login.css" rel="stylesheet" type="text/css"/>
     <!--自己的样式-->
     <!--[if IE 6]>
     <script type="text/javascript" src="${pageContext.request.contextPath}/res/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('.pngfix,.icon');</script>
+
+    <script type="application/javascript">
+        // 设置为主页
+        function SetHome(obj, vrl) {
+            try {
+                obj.style.behavior = 'url(#default#homepage)';
+                obj.setHomePage(vrl);
+            } catch (e) {
+                if (window.netscape) {
+                    try {
+                        netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                    } catch (e) {
+                        alert("此操作被浏览器拒绝！\n请在浏览器地址栏输入“about:config”并回车\n然后将 [signed.applets.codebase_principal_support]的值设置为'true',双击即可。");
+                    }
+                    var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+                    prefs.setCharPref('browser.startup.homepage', vrl);
+                } else {
+                    alert("您的浏览器不支持，请按照下面步骤操作：1.打开浏览器设置。2.点击设置网页。3.输入：" + vrl + "点击确定。");
+                }
+            }
+        }
+        //加入收藏
+        function shoucang(sTitle, sURL) {
+            try {
+                window.external.addFavorite(sURL, sTitle);
+            } catch (e) {
+                try {
+                    window.sidebar.addPanel(sTitle, sURL, "");
+                } catch (e) {
+                    alert("加入收藏失败，请使用Ctrl+D进行添加");
+                }
+            }
+        }
+    </script>
+
+
     <![endif]-->
 </head>
-
 <body>
 <div class="header">
     <div class="header-top">
         <div class="w">
 					<span class="f-l">
 						<ul class="nav-left">
-                            <li><a>网站首页</a></li>
-                            <li><a>加入收藏</a></li>
+                            <li><a href="javascript:void(0)" onclick="SetHome(this,window.location)">设为首页</a></li>
+                            <li><a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">加入收藏</a></li>
                         </ul>
 					</span>
 					<span class="f-r">
 						<ul class="nav-right">
                             <li>欢迎 访问FreedomArmy！</li>
                             <li><a href="">登录</a></li>
-                            <!-- <li><a href="">注册</a></li> -->
+                            <li><a href="">注册</a></li>
                         </ul>
 					</span>
         </div>
     </div>
+    <hr style="color: #303030;"/>
     <div class="header-wrap">
-        <div class="w">
-            <div class="logo f-l">
-                <a href="#"><img src="${pageContext.request.contextPath}/resource/img/common/login/sclglogo.png" height="110"/></a>
-            </div>
-            <div class="wrap-tit f-l ml-50">
-                <h1>欢迎登录</h1>
-            </div>
-
+        <div class="logo f-l">
+            <a href="#"><img src="${pageContext.request.contextPath}/resource/img/common/login/head.png" height="130"/></a>
         </div>
     </div>
 </div>
@@ -63,92 +92,71 @@
 <div class="mt-50">
 </div>
 
-<div class="row cl w">
-    <div class="login-content cl">
-        <div class="col-1">
-        </div>
+<div class="logframe">
+    <div class="login-content">
         <div class="col-7">
-            <img src="${pageContext.request.contextPath}/resource/img/common/login/adv.jpg" width="620" height="360"/>
         </div>
-
-
         <div class="col-3">
-            <div class="login-form">
-
-                <div class="panel panel-primary">
-                    <div class="panel-header">
-                        <h4 class="text-c">用户登录</h4>
-                    </div>
-                    <div class="panel-body">
-                        <form method="post" class="form form-horizontal responsive" id="login-form" action="/freedomarmy/admin/login">
-                            <div class="row cl">
-                                <label class="form-label col-3">账号：</label>
-
-                                <div class="formControls col-9">
-                                    <input class="input-text" autocomplete="off" name="name" placeholder="账号" type="text" size="11">
-                                </div>
-                            </div>
-
-                            <div class="row cl">
-                                <label class="form-label col-3">密码：</label>
-
-                                <div class="formControls col-9">
-                                    <input class="input-text" autocomplete="off" name="password" placeholder="密码" type="password" size="22">
-                                </div>
-                            </div>
-
-                            <%--     <div class="row cl">
-                                     <label class="form-label col-3">类别：</label>
-
-                                     <div class="formControls col-9">
-                                         <span class="select-box">
-                                           <select class="select" size="1" name="demo1">
-                                               <option value="0" selected>管理员</option>
-                                               <option value="1">超级管理员</option>
-                                           </select>
-                                         </span>
-                                     </div>
-                                 </div>--%>
-
-                            <div class="row cl text-c">
-                                <input class="btn btn-primary radius" value="立即登录" type="submit">
-                            </div>
-                        </form>
-                    </div>
+            <div class="panel panel-primary">
+                <div class="panel-header">
+                    <h4 class="text-c">用户登录</h4>
                 </div>
-                <div>
+                <div class="panel-body">
+                    <form method="post" class="form form-horizontal responsive" id="login-form" action="/freedomarmy/admin/login">
+                        <div class="row cl">
+                            <label class="form-label col-3">账号：</label>
+
+                            <div class="formControls col-9">
+                                <input class="input-text" autocomplete="off" name="name" placeholder="账号" type="text" size="11">
+                            </div>
+                        </div>
+                        <div class="row cl">
+                            <label class="form-label col-3">密码：</label>
+
+                            <div class="formControls col-9">
+                                <input class="input-text" autocomplete="off" name="password" placeholder="密码" type="password" size="22">
+                            </div>
+                        </div>
+                        <div class="row cl text-c">
+                            <input class="btn btn-primary radius" value="立即登录" type="submit">
+                        </div>
+                    </form>
                 </div>
             </div>
+            <div>
+            </div>
         </div>
-        <div class="col-1">
+    </div>
+    <hr style="color: #303030;"/>
+    <div class="footer">
+        <div class="footer-top">
+            <div class="footer-top-nav w">
+                <ul>
+                    <li>
+                        <a>关于我们</a>
+                    </li>
+                    <li>
+                        <a href="http://www.chinahr.com/zigong/">诚聘英才</a>
+                    </li>
+                    <li>
+                        <a href="https://s.taobao.com/search?ie=utf8&initiative_id=staobaoz_20180711&stats_click=search_radio_all%3A1&js=1&imgfile=&q=%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90%E7%BB%84%E5%90%88%E5%A5%97%E8%A3%85&suggest=0_1&_input_charset=utf-8&wq=%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90%E7%BB%84%E5%90%88&suggest_query=%E5%81%A5%E8%BA%AB%E5%99%A8%E6%9D%90%E7%BB%84%E5%90%88&source=suggest">主营业务</a>
+                    </li>
+                    <li>
+                        <a href="https://consumerservice.taobao.com/contact-us?spm=a230r.1.1997523009.35.633717197X8WnJ">联系方式</a>
+                    </li>
+                    <li>
+                        <a href="https://map.baidu.com/">网站地图</a>
+                    </li>
+                </ul>
+                <p>地址：四川省自贡市汇兴路学苑街180号</p>
+
+                <p>邮编：100000　电话：028-8888888</p>
+
+                <p>All Right Reserved By FreedomArmy 京ICP备0000000号 京公网安备6666666666</p>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="footer">
-    <div class="footer-top">
-        <div class="footer-top-nav w">
-            <ul>
-                <li><a>关于我们</a></li>
-                <li><a href="#">诚聘英才</a></li>
-                <li><a href="#">主营业务</a></li>
-                <li><a href="#">联系方式</a></li>
-                <li><a href="#">网站地图</a></li>
-            </ul>
-
-        </div>
-    </div>
-    <div class="footer-wrap">
-        <div class="copyright w">
-            <p style="color:#333;padding:3px 0;">地址：四川省自贡市汇兴路学苑街180号</p>
-
-            <p style="color:#333;padding:3px 0;">邮编：100000　电话：010-12345678</p>
-
-            <p style="color:#333;padding:3px 0;">All Right Reserved By FreedomArmy 京ICP备13002607号 京公网安备888888881</p>
-        </div>
-    </div>
-</div>
-
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/H-ui.js"></script>
 </body>

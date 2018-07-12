@@ -16,7 +16,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/freedomarmy"
                         userId="root"
-                        password="root"/>
+                        password="123456"/>
 
         <javaModelGenerator targetPackage="com.snow.freedomarmy.admin.app.core.model"
                             targetProject="../freedomarmy-admin-app-core/src/main/java">
@@ -55,7 +55,11 @@
         <!--<generatedKey column="id" sqlStatement="MySql"-->
         <!--identity="true"/>-->
         <!--</table>-->
+<<<<<<< HEAD
         <table tableName="user">
+=======
+        <table tableName="commodity">
+>>>>>>> dev
             <generatedKey column="id" sqlStatement="MySql"
                           identity="true"/>
         </table>
