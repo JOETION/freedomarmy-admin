@@ -8,6 +8,7 @@ package com.snow.freedomarmy.admin.app.api;
  */
 
 
+import com.snow.freedomarmy.admin.app.exception.RemarkException;
 import com.snow.freedomarmy.admin.app.pojo.AdminDto;
 
 /**
@@ -23,15 +24,18 @@ public interface AdminService {
      * @return
      */
     AdminDto getAdminByName(String loginName, String password);
+
     /**
      * 修改密码
-     * @param adminid
+     *
+     * @param id
      * @param password
      * @return
      */
-    String  updatePswdById(int adminid, String password);
+    boolean updatePwdById(int id, String password) throws RemarkException;
+
     /**
      * 获得id对象
      */
-    AdminDto getAdminId(int adimimId);
+    AdminDto getAdminById(int id);
 }

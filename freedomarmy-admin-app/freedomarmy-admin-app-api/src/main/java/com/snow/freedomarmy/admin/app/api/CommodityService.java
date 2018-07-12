@@ -1,5 +1,6 @@
 package com.snow.freedomarmy.admin.app.api;
 
+import com.snow.freedomarmy.admin.app.exception.RemarkException;
 import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
 import com.snow.freedomarmy.admin.app.pojo.OrdersDto;
 
@@ -15,18 +16,18 @@ import java.util.List;
 public interface CommodityService {
 
     /**
-     * 添加商品
-     *
      * @param commodityDto
+     * @return 主键
+     * @throws RemarkException
      */
-    public int addCommodity(CommodityDto commodityDto);
+    public int addCommodity(CommodityDto commodityDto) throws RemarkException;
 
     /**
      * 通姑商品编号删除商品
      *
      * @param commodityId
      */
-    public String deleteCommodityById(int commodityId);
+    public boolean deleteCommodityById(int commodityId) throws RemarkException;
 
 
     /**
@@ -35,7 +36,7 @@ public interface CommodityService {
      * @param commodityId
      * @return
      */
-    public String removeCommodityById(int commodityId);
+    public boolean removeCommodityById(int commodityId) throws RemarkException;
 
 
     /**
@@ -44,14 +45,16 @@ public interface CommodityService {
      * @param commodityId
      * @return
      */
-    public String recycleCommodityById(int commodityId);
+    public boolean recycleCommodityById(int commodityId) throws RemarkException;
 
 
     /**
-     * @param ordersDtos
-     * @return 通过Orders 获取id
+     * 通过订单编号获取商品信息
+     *
+     * @param ids
+     * @return
      */
-    List<CommodityDto> OrdersToCommodityLsit(List<OrdersDto> ordersDtos);
+    List<CommodityDto> getCommodityByOrderIds(List<Integer> ids);
 
     /**
      * 更新商品信息
@@ -59,7 +62,7 @@ public interface CommodityService {
      * @param commodityDto
      * @return
      */
-    public String updateCommodity(CommodityDto commodityDto);
+    public boolean updateCommodity(CommodityDto commodityDto) throws RemarkException;
 
     /**
      * 取得商品信息
@@ -79,7 +82,7 @@ public interface CommodityService {
     /**
      * 更新商品的类型
      */
-    public String updateCommodityType(int commodityId, int commodityTypeId, int grapaType);
+    public boolean updateCommodityType(int commodityId, int commodityTypeId, int grapaType) throws RemarkException;
 
     /**
      * 得到所有商品信息

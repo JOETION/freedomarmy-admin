@@ -8,6 +8,7 @@ package com.snow.freedomarmy.admin.app.api;
  */
 
 
+import com.snow.freedomarmy.admin.app.exception.RemarkException;
 import com.snow.freedomarmy.admin.app.pojo.CommodityTypeDto;
 
 import java.util.List;
@@ -18,23 +19,27 @@ import java.util.List;
 public interface CommodityTypeService {
 
     /**
-     * 添加商品类型
+     *
+     * @param typeName
+     * @param type
+     * @return 主键
+     * @throws RemarkException
      */
-    public String addCommodityType(String typeName, int type);
+    public int addCommodityType(String typeName, int type) throws RemarkException;
 
     /**
      * 通过商品类型编号删除商品类型
      *
      * @param id
      */
-    public String deleteCommodityTypeById(int id);
+    public boolean deleteCommodityTypeById(int id) throws RemarkException;
 
     /**
      * 通过商品类型编号更新商品类型
      *
      * @param commodityId
      */
-    public String updateCommodityTypeById(int commodityId, String typeName, int type);
+    public boolean updateCommodityTypeById(int commodityId, String typeName, int type) throws RemarkException;
 
     /**
      * 得到所有的商品类型信息

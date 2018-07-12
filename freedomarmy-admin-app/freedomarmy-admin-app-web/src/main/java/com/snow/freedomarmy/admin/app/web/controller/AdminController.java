@@ -9,6 +9,7 @@ package com.snow.freedomarmy.admin.app.web.controller;
 
 
 import com.snow.freedomarmy.admin.app.api.AdminService;
+import com.snow.freedomarmy.admin.app.exception.RemarkException;
 import com.snow.freedomarmy.admin.app.pojo.AdminDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,7 @@ public class AdminController {
     public ModelAndView updateAdminById(@RequestParam("id") int id) {
         //将数据放到request中
         ModelAndView modelAndView = new ModelAndView();
-        AdminDto adminDto = adminService.getAdminId(id);
+        AdminDto adminDto = adminService.getAdminById(id);
         System.out.println("fhsdiofhsoi----" + adminDto);
         modelAndView.addObject("admin", adminDto);
         modelAndView.setViewName("admin_updatePassword");
@@ -62,7 +63,11 @@ public class AdminController {
     public ModelAndView returnLogin(@RequestParam("id") int id, @RequestParam("newPassword") String password) {
         ModelAndView modelAndView = new ModelAndView();
         System.out.println(id + "------------------" + password);
-        adminService.updatePswdById(id, password);
+        try {
+            adminService.updatePwdById(id, password);
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
         modelAndView.setViewName("updatePassword_success");
         return modelAndView;
 

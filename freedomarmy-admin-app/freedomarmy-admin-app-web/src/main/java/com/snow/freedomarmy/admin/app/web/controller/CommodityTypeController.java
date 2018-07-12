@@ -11,6 +11,7 @@ import com.google.common.base.Preconditions;
 import com.snow.freedomarmy.admin.app.api.CommodityService;
 import com.snow.freedomarmy.admin.app.api.CommodityTypeService;
 import com.snow.freedomarmy.admin.app.dao.mapper.CommodityMapper;
+import com.snow.freedomarmy.admin.app.exception.RemarkException;
 import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
 import com.snow.freedomarmy.admin.app.pojo.CommodityPagingDto;
 import com.snow.freedomarmy.admin.app.pojo.CommodityTypeDto;
@@ -49,13 +50,36 @@ public class CommodityTypeController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     @ResponseBody
     public String addCommodityType(@RequestParam("name") String typeName, @RequestParam("type") int type) {
-        return commodityTypeService.addCommodityType(typeName, type);
+        int isSuccess = -1;
+        try {
+            isSuccess = commodityTypeService.addCommodityType(typeName, type);
+            if (isSuccess > 0) {
+                return "success";
+            } else {
+                return "failed";
+            }
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+        return "failed";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
     public String deleteCommodityById(@RequestParam("id") int commodityId) {
-        return commodityTypeService.deleteCommodityTypeById(commodityId);
+        boolean isSuccess = false;
+        try {
+            isSuccess = commodityTypeService.deleteCommodityTypeById(commodityId);
+            if (isSuccess) {
+                return "success";
+            } else {
+                return "failed";
+            }
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+        return "failed";
+
     }
 
 
@@ -99,7 +123,19 @@ public class CommodityTypeController {
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     @ResponseBody
     public String updateCommodityType(@RequestParam("id") int commodityId, @RequestParam("name") String typeName, @RequestParam("type") int type) {
-        return commodityTypeService.updateCommodityTypeById(commodityId, typeName, type);
+        boolean isSuccess = false;
+        try {
+            isSuccess = commodityTypeService.updateCommodityTypeById(commodityId, typeName, type);
+            if (isSuccess) {
+                return "success";
+            } else {
+                return "failed";
+            }
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+
+        return "failed";
     }
 
 }

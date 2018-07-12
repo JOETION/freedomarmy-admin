@@ -10,6 +10,7 @@ package com.snow.freedomarmy.admin.app.web.controller;
 
 import com.snow.freedomarmy.admin.app.api.CommodityService;
 import com.snow.freedomarmy.admin.app.api.CommodityTypeService;
+import com.snow.freedomarmy.admin.app.exception.RemarkException;
 import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
 import com.snow.freedomarmy.admin.app.pojo.CommodityTypeDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,18 @@ public class CommodityController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String addCommodity(@RequestBody CommodityDto commodityDto) {
-        int id = commodityService.addCommodity(commodityDto);
-        return id + "";
+        int id = 0;
+        try {
+            id = commodityService.addCommodity(commodityDto);
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+        if (id > 0) {
+            return id + "";
+        } else {
+            return "-1";
+        }
+
     }
 
     @RequestMapping(value = "/add/show", method = RequestMethod.GET)
@@ -80,34 +91,83 @@ public class CommodityController {
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
     public String deleteCommodityById(@RequestParam("commodityId") int commodityId) {
-        return commodityService.deleteCommodityById(commodityId);
+        try {
+            boolean isSuccess = commodityService.deleteCommodityById(commodityId);
+            if (isSuccess) {
+                return "success";
+            } else {
+                return "failed";
+            }
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+        return "failed";
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.GET)
     @ResponseBody
     public String removeCommodityById(@RequestParam("commodityId") int commodityId) {
-        return commodityService.removeCommodityById(commodityId);
+        boolean isSuccess = false;
+        try {
+            isSuccess = commodityService.removeCommodityById(commodityId);
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+        if (isSuccess) {
+            return "success";
+        } else {
+            return "failed";
+        }
     }
 
 
     @RequestMapping(value = "/recycle", method = RequestMethod.GET)
     @ResponseBody
     public String recycleCommodityById(@RequestParam("commodityId") int commodityId) {
-        return commodityService.recycleCommodityById(commodityId);
+        boolean isSuccess = false;
+        try {
+            isSuccess = commodityService.recycleCommodityById(commodityId);
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+        if (isSuccess) {
+            return "success";
+        } else {
+            return "failed";
+        }
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public String updateCommodity(@RequestBody CommodityDto commodityDto) {
-        return commodityService.updateCommodity(commodityDto);
+        boolean isSuccess = false;
+        try {
+            isSuccess = commodityService.updateCommodity(commodityDto);
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+        if (isSuccess) {
+            return "success";
+        } else {
+            return "failed";
+        }
     }
 
 
     @RequestMapping(value = "/updateType", method = RequestMethod.GET)
     @ResponseBody
     public String updateCommodityType(@RequestParam("commodityId") int commodityId, @RequestParam("commodityTypeId") int commodityTypeId) {
-        return commodityService.updateCommodityType(commodityId, commodityTypeId, commodityTypeService.getGrapaById(commodityTypeId));
-
+        boolean isSuccess = false;
+        try {
+            isSuccess = commodityService.updateCommodityType(commodityId, commodityTypeId, commodityTypeService.getGrapaById(commodityTypeId));
+        } catch (RemarkException e) {
+            e.printStackTrace();
+        }
+        if (isSuccess) {
+            return "success";
+        } else {
+            return "failed";
+        }
     }
 
 
