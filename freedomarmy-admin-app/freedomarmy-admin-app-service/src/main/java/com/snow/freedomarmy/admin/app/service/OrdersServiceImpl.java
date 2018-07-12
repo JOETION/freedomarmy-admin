@@ -107,7 +107,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<OrdersDto> getOrdersOther(String username) {
+    public List<OrdersDto> getCheckOrders(String username) {
         OrdersExample ordersExample = new OrdersExample();
         OrdersExample.Criteria criteria = ordersExample.createCriteria();
         //判断字符串是否为空，如果为nul或者""则返回true，否则返回false

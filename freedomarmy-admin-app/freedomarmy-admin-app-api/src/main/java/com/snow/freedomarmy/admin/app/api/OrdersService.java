@@ -30,7 +30,7 @@ public interface OrdersService {
     List<OrdersDto> getOrdersAll();
 
     //根据用户查询订--模糊查询
-    List<OrdersDto> getOrdersOther(String username);
+    List<OrdersDto> getCheckOrders(String username);
 
     /**
      * 是否发货

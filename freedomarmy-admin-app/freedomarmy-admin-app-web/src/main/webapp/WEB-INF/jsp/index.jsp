@@ -67,8 +67,7 @@
             <dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="javascript:;" onclick="member_add('学生信息导入','imporStudentXls','','300')">用户信息</a></li>
-                    <li><a href="javascript:;" onclick="member_add('导出学生信息','choise/xlsexport','','300')">重置密码</a></li>
+                    <li><a _href="${pageContext.request.contextPath}/freedomarmy/admin/userlist" href="javascript:void(0)">查询用户信息</a></li>
                 </ul>
             </dd>
         </dl>
@@ -142,6 +141,16 @@
                 <ul>
                     <li><a onclick="layer_show('添加商品类别','freedomarmy/admin/commodityType/show',500,400);">新增类别</a></li>
                     <li><a _href="freedomarmy/admin/commodityType/match" href="javascript:;">类别关联</a></li>
+                </ul>
+            </dd>
+
+
+        </dl>
+        <dl>
+            <dt><i class="Hui-iconfont">&#xe616;</i>个性设置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a _href="freedomarmy/admin/updatePassword?id=${admin.id}" href="javascript:;" >重置密码</a></li>
                 </ul>
             </dd>
         </dl>

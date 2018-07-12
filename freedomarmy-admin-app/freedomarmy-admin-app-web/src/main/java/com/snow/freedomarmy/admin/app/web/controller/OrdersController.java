@@ -48,7 +48,7 @@ public class OrdersController {
     @RequestMapping(value = "/check", method = RequestMethod.POST)
     public ModelAndView getOrdersCheck(@RequestParam(value = "username") String username) {
         ModelAndView modelAndView = new ModelAndView();
-        List<OrdersDto> ordersList = ordersService.getOrdersOther(username);
+        List<OrdersDto> ordersList = ordersService.getCheckOrders(username);
         if (ordersList.isEmpty()) {
             modelAndView.addObject("error");
             modelAndView.setViewName("redirect:/freedomarmy/admin/order/list");

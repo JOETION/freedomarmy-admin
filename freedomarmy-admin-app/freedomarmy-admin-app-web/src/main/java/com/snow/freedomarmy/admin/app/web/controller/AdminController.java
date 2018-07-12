@@ -42,4 +42,30 @@ public class AdminController {
         return modelAndView;
     }
 
+
+    @RequestMapping(value = "/admin/updatePassword")
+    //传id值
+    public ModelAndView updateAdminById(@RequestParam("id") int id) {
+        //将数据放到request中
+        ModelAndView modelAndView = new ModelAndView();
+        AdminDto adminDto = adminService.getAdminId(id);
+        System.out.println("fhsdiofhsoi----" + adminDto);
+        modelAndView.addObject("admin", adminDto);
+        modelAndView.setViewName("admin_updatePassword");
+        return modelAndView;
+    }
+
+    /**
+     * 修改密码返回主页
+     */
+    @RequestMapping(value = "/admin/returnLogin", method = RequestMethod.POST)
+    public ModelAndView returnLogin(@RequestParam("id") int id, @RequestParam("newPassword") String password) {
+        ModelAndView modelAndView = new ModelAndView();
+        System.out.println(id + "------------------" + password);
+        adminService.updatePswdById(id, password);
+        modelAndView.setViewName("updatePassword_success");
+        return modelAndView;
+
+    }
+
 }

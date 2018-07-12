@@ -55,7 +55,7 @@
         <!--<generatedKey column="id" sqlStatement="MySql"-->
         <!--identity="true"/>-->
         <!--</table>-->
-        <table tableName="orders">
+        <table tableName="user">
             <generatedKey column="id" sqlStatement="MySql"
                           identity="true"/>
         </table>

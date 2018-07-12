@@ -48,6 +48,32 @@ public class AdminServiceImpl implements AdminService {
                     .build();
             return adminDto;
         }
+    }
 
+    /**
+     * 修改密码
+     * @param id
+     * @param password
+     * @return
+     */
+    @Override
+    public String updatePswdById(int id, String password) {
+
+        Admin admin=new Admin();
+        admin.setPassword(password);
+        AdminExample adminExample=new AdminExample();
+        adminExample.createCriteria().andIdEqualTo(id);
+        adminMapper.updateByExampleSelective(admin,adminExample);
+        return "success";
+    }
+
+    //获取密码就ok
+    @Override
+    public AdminDto getAdminId(int id) {
+        Admin admin = adminMapper.selectByPrimaryKey(id);
+        AdminDto adminDto = new AdminDto.Builder().setId(admin.getId())
+                .setPassword(admin.getPassword())
+                .build();
+        return adminDto;
     }
 }
