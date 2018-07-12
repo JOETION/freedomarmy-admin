@@ -76,10 +76,7 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-
-                    <%--<li><a onclick="layer_show('发货管理','#',550,320);">发货</a></li>--%>
                     <li><a _href="${pageContext.request.contextPath}/freedomarmy/admin/order/list" href="javascript:void(0)">查询</a></li>
-                    <%--<li><a onclick="layer_show('退款管理','order_list',400,400);">确认退款</a></li>--%>
                 </ul>
             </dd>
         </dl>
@@ -91,50 +88,6 @@
                 </ul>
             </dd>
         </dl>
-
-
-        <dl>
-            <dt><i class="Hui-iconfont">&#xe616;</i> 销量统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a _href="choise/teacher_list" href="javascript:void(0)">销售额统计</a></li>
-                    <li><a _href="choise/student_list" href="javascript:void(0)">TOP10商品</a></li>
-                </ul>
-            </dd>
-        </dl>
-
-
-        <dl>
-            <dt><i class="Hui-iconfont">&#xe616;</i> 系统设置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a onclick="layer_show('设置当前年级','leader/setGrade',400,400);">操作日志查询</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl>
-            <dt><i class="Hui-iconfont">&#xe616;</i> 后台权限<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a onclick="layer_show('查看我的信息','myinfo',400,400);">新增角色</a></li>
-                    <li><a onclick="layer_show('修改我的信息','modifyinfo',400,400);">冻结角色</a></li>
-                    <li><a onclick="layer_show('修改我的信息','modifyinfo',400,400);">角色管理</a></li>
-                    <li><a onclick="layer_show('修改我的信息','modifyinfo',400,400);">权限管理</a></li>
-                </ul>
-            </dd>
-        </dl>
-
-
-        <dl>
-            <dt><i class="Hui-iconfont">&#xe616;</i> 活动管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a onclick="layer_show('消息列表','message/list',500,400);">发布活动</a></li>
-                    <li><a onclick="layer_show('发送消息给${teacher.name}','message/send?recvId=${teacher.id}',300,300);">导师通讯</a></li>
-                </ul>
-            </dd>
-        </dl>
-
 
         <dl>
             <dt><i class="Hui-iconfont">&#xe616;</i> 商品类别管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
@@ -152,7 +105,7 @@
     <div id="Hui-tabNav" class="Hui-tabNav">
         <div class="Hui-tabNav-wp">
             <ul id="min_title_list" class="acrossTab cl">
-                <li class="active"><span title="我的桌面" data-href="${pageContext.request.contextPath}/notice/notice-list">通知公告</span><em></em></li>
+                <li class="active"><span title="我的桌面" data-href="${pageContext.request.contextPath}/notice/notice-list">用户管理</span><em></em></li>
             </ul>
         </div>
         <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
@@ -163,9 +116,6 @@
             <iframe scrolling="yes" frameborder="0" src="notice/notice-list"></iframe>
         </div>
     </div>
-
-    <!--这后面追加代码-->
-
 </section>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/layer/1.9.3/layer.js"></script>
