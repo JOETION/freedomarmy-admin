@@ -50,7 +50,6 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     /**
-     *
      * @param ordersId
      * @return
      */
@@ -58,8 +57,8 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public OrdersDto findOrderId(int ordersId) {
 
-        Orders orders =ordersMapper.selectByPrimaryKey(ordersId);
-        OrdersDto ordersDto =new OrdersDto();
+        Orders orders = ordersMapper.selectByPrimaryKey(ordersId);
+        OrdersDto ordersDto = new OrdersDto();
         //
         ordersDto.setId(orders.getId());
         ordersDto.setUsername(orders.getUsername());
@@ -140,23 +139,21 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     /**
-     *
-     *
      * @param ordersid
      * @param isSendGood
-     * @return
-     * 发货
+     * @return 发货
      */
 
     @Override
     public String updateIsSendGood(int ordersid, int isSendGood) {
-        Orders orders=new Orders();
+        Orders orders = new Orders();
         orders.setIsSendGoods(isSendGood);
-        OrdersExample ordersExample=new OrdersExample();
+        OrdersExample ordersExample = new OrdersExample();
         ordersExample.createCriteria().andIdEqualTo(ordersid);
-        ordersMapper.updateByExampleSelective(orders,ordersExample);
+        ordersMapper.updateByExampleSelective(orders, ordersExample);
         return "success";
     }
+
     /**
      * isReturnGoods;//退货
      * update
@@ -164,13 +161,14 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public String updateisReturnGoods(int ordersid, int isReturnGoods) {
-        Orders orders=new Orders();
+        Orders orders = new Orders();
         orders.setIsReturnGoods(isReturnGoods);
-        OrdersExample ordersExample=new OrdersExample();
+        OrdersExample ordersExample = new OrdersExample();
         ordersExample.createCriteria().andIdEqualTo(ordersid);
-        ordersMapper.updateByExampleSelective(orders,ordersExample);
+        ordersMapper.updateByExampleSelective(orders, ordersExample);
         return "success";
     }
+
     /**
      * isExchangeGoods;//换货
      * update
@@ -178,23 +176,23 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public String updateisExchangeGoods(int ordersid, int isExchangeGoods) {
-        Orders orders=new Orders();
+        Orders orders = new Orders();
         orders.setIsExchangeGoods(isExchangeGoods);
-        OrdersExample ordersExample=new OrdersExample();
+        OrdersExample ordersExample = new OrdersExample();
         ordersExample.createCriteria().andIdEqualTo(ordersid);
-        ordersMapper.updateByExampleSelective(orders,ordersExample);
+        ordersMapper.updateByExampleSelective(orders, ordersExample);
         return "success";
     }
 
-   // 退款isRefund
+    // 退款isRefund
 
     @Override
     public String updateisRefund(int ordersid, int isRefund) {
-        Orders orders=new Orders();
+        Orders orders = new Orders();
         orders.setIsRefund(isRefund);
-        OrdersExample ordersExample=new OrdersExample();
+        OrdersExample ordersExample = new OrdersExample();
         ordersExample.createCriteria().andIdEqualTo(ordersid);
-        ordersMapper.updateByExampleSelective(orders,ordersExample);
+        ordersMapper.updateByExampleSelective(orders, ordersExample);
         return "success";
     }
 

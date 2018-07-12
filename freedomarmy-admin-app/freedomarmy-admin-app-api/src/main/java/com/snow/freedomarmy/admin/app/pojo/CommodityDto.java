@@ -3,108 +3,104 @@ package com.snow.freedomarmy.admin.app.pojo;
 /**
  * @Auther: Wei-Peng
  * @Date: 2018/7/10 18:43
- * @Description:
- *  商品类
+ * @Description: 商品类
  */
 public class CommodityDto {
-    private int id;
+    private int commodityId;
     private String commodityName;
     private String commodityPrice;
-    private int browsingVolume;
-    private int parent;
-    private int grandpa;
-    private int stock;
-    private int integral;
+    private int commodityType;
+    private int commodityStock;
+    private int commodityIntegral;
+    private String commodityImage;
 
-    public CommodityDto() {
+    private CommodityDto(Builder builder) {
+        this.commodityImage = builder.commodityImage;
+        this.commodityName = builder.commodityName;
+        this.commodityPrice = builder.commodityPrice;
+        this.commodityType = builder.commodityType;
+        this.commodityId = builder.commodityId;
+        this.commodityStock = builder.commodityStock;
+        this.commodityIntegral = builder.commodityIntegral;
     }
 
-    public CommodityDto(int id, String commodityName, String commodityPrice, int browsingVolume, int parent, int grandpa, int stock, int integral) {
-        this.id = id;
-        this.commodityName = commodityName;
-        this.commodityPrice = commodityPrice;
-        this.browsingVolume = browsingVolume;
-        this.parent = parent;
-        this.grandpa = grandpa;
-        this.stock = stock;
-        this.integral = integral;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public int getCommodityId() {
+        return commodityId;
     }
 
     public String getCommodityName() {
         return commodityName;
     }
 
-    public void setCommodityName(String commodityName) {
-        this.commodityName = commodityName;
-    }
-
     public String getCommodityPrice() {
         return commodityPrice;
     }
 
-    public void setCommodityPrice(String commodityPrice) {
-        this.commodityPrice = commodityPrice;
+    public int getCommodityType() {
+        return commodityType;
     }
 
-    public int getBrowsingVolume() {
-        return browsingVolume;
+    public int getCommodityStock() {
+        return commodityStock;
     }
 
-    public void setBrowsingVolume(int browsingVolume) {
-        this.browsingVolume = browsingVolume;
+    public int getCommodityIntegral() {
+        return commodityIntegral;
     }
 
-    public int getParent() {
-        return parent;
+    public String getCommodityImage() {
+        return commodityImage;
     }
 
-    public void setParent(int parent) {
-        this.parent = parent;
+    //自动生成
+    public static class Builder {
+
+        private String commodityName;
+        private String commodityPrice;
+        private int commodityType;
+        private String commodityImage;
+        private int commodityId;
+        private int commodityStock;
+        private int commodityIntegral;
+
+        public CommodityDto build() {
+            return new CommodityDto(this);
+        }
+
+        public Builder setCommodityName(String commodityName) {
+            this.commodityName = commodityName;
+            return this;
+        }
+
+        public Builder setCommodityPrice(String commodityPrice) {
+            this.commodityPrice = commodityPrice;
+            return this;
+        }
+
+        public Builder setCommodityType(int commodityType) {
+            this.commodityType = commodityType;
+            return this;
+        }
+
+        public Builder setCommodityImage(String commodityImage) {
+            this.commodityImage = commodityImage;
+            return this;
+        }
+
+        public Builder setCommodityId(int commodityId) {
+            this.commodityId = commodityId;
+            return this;
+        }
+
+        public Builder setCommodityStock(int commodityStock) {
+            this.commodityStock = commodityStock;
+            return this;
+        }
+
+        public Builder setCommodityIntegral(int commodityIntegral) {
+            this.commodityIntegral = commodityIntegral;
+            return this;
+        }
     }
 
-    public int getGrandpa() {
-        return grandpa;
-    }
-
-    public void setGrandpa(int grandpa) {
-        this.grandpa = grandpa;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public int getIntegral() {
-        return integral;
-    }
-
-    public void setIntegral(int integral) {
-        this.integral = integral;
-    }
-
-    @Override
-    public String toString() {
-        return "CommodityDto{" +
-                "id=" + id +
-                ", commodityName='" + commodityName + '\'' +
-                ", commodityPrice='" + commodityPrice + '\'' +
-                ", browsingVolume=" + browsingVolume +
-                ", parent=" + parent +
-                ", grandpa=" + grandpa +
-                ", stock=" + stock +
-                ", integral=" + integral +
-                '}';
-    }
 }

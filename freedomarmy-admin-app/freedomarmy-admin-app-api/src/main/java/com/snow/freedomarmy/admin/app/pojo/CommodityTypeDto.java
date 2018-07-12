@@ -12,8 +12,17 @@ package com.snow.freedomarmy.admin.app.pojo;
  * 商品类实体
  */
 public class CommodityTypeDto {
+    private int id;
     private String typeName;
     private int type;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTypeName() {
         return typeName;

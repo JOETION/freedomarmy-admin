@@ -36,28 +36,28 @@
 
         <!--下面是需要生成的表名-->
         <!--<table tableName="commodity">-->
-            <!--<generatedKey column="id" sqlStatement="MySql"-->
-                          <!--identity="true"/>-->
-        <!--</table>-->
-        <!--<table tableName="commodity_comment">-->
-            <!--<generatedKey column="id" sqlStatement="MySql"-->
-                          <!--identity="true"/>-->
-        <!--</table>-->
-        <!--<table tableName="commodity_image">-->
-            <!--<generatedKey column="id" sqlStatement="MySql"-->
-                          <!--identity="true"/>-->
-        <!--</table>-->
-        <!--<table tableName="commodity_type">-->
-            <!--<generatedKey column="id" sqlStatement="MySql"-->
-                          <!--identity="true"/>-->
-        <!--</table>-->
-         <!--<table tableName="orders">-->
         <!--<generatedKey column="id" sqlStatement="MySql"-->
         <!--identity="true"/>-->
         <!--</table>-->
-        <table tableName="commodity">
-        <generatedKey column="id" sqlStatement="MySql"
-        identity="true"/>
+        <!--<table tableName="commodity_comment">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="commodity_image">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="commodity_type">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="orders">-->
+        <!--<generatedKey column="id" sqlStatement="MySql"-->
+        <!--identity="true"/>-->
+        <!--</table>-->
+        <table tableName="orders">
+            <generatedKey column="id" sqlStatement="MySql"
+                          identity="true"/>
         </table>
 
     </context>

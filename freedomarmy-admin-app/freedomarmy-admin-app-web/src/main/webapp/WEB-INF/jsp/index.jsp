@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -11,15 +12,15 @@
     <LINK rel="Bookmark" href="/favicon.ico">
     <LINK rel="Shortcut Icon" href="/favicon.ico"/>
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="res/lib/html5.js"></script>
-    <script type="text/javascript" src="res/lib/respond.min.js"></script>
-    <script type="text/javascript" src="res/lib/PIE_IE678.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/html5.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/respond.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/PIE_IE678.js"></script>
     <![endif]-->
-    <link href="res/css/H-ui.min.css" rel="stylesheet" type="text/css"/>
-    <link href="res/css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
-    <link href="res/skin/default/skin.css" rel="stylesheet" type="text/css" id="skin"/>
-    <link href="res/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css"/>
-    <link href="res/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/res/css/H-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/res/css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/res/skin/default/skin.css" rel="stylesheet" type="text/css" id="skin"/>
+    <link href="${pageContext.request.contextPath}/res/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/res/css/style.css" rel="stylesheet" type="text/css"/>
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -37,7 +38,7 @@
         </ul>
     </nav>
     <ul class="Hui-userbar">
-        <li class="dropDown dropDown_hover"><a href="#" class="dropDown_A">骚批宗 <i class="Hui-iconfont">&#xe6d5;</i></a>
+        <li class="dropDown dropDown_hover"><a href="#" class="dropDown_A">${admin.name} <i class="Hui-iconfont">&#xe6d5;</i></a>
             <ul class="dropDown-menu radius box-shadow">
                 <li><a href="login">切换账户</a></li>
                 <li><a href="logout">退出</a></li>
@@ -66,7 +67,6 @@
             <dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="javascript:;" onclick="member_add('导师信息导入','imporTeachertXls','','300')">搜索用户</a></li>
                     <li><a href="javascript:;" onclick="member_add('学生信息导入','imporStudentXls','','300')">用户信息</a></li>
                     <li><a href="javascript:;" onclick="member_add('导出学生信息','choise/xlsexport','','300')">重置密码</a></li>
                 </ul>
@@ -83,14 +83,11 @@
                 </ul>
             </dd>
         </dl>
-
         <dl>
             <dt><i class="Hui-iconfont">&#xe611;</i> 商品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a _href="notice/notice-list" href="javascript:;">新增</a></li>
-                    <li><a _href="notice/add-notice" href="javascript:;">上架</a></li>
-                    <li><a _href="notice/del-notice-list" href="javascript:;">下架</a></li>
+                    <li><a _href="freedomarmy/admin/commodity/manage/show" href="javascript:;">管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -115,9 +112,6 @@
                 </ul>
             </dd>
         </dl>
-        <%--</c:if>--%>
-
-
         <dl>
             <dt><i class="Hui-iconfont">&#xe616;</i> 后台权限<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
@@ -146,8 +140,8 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 商品类别管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a onclick="layer_show('消息列表','message/list',500,400);">新增类别</a></li>
-                    <li><a onclick="layer_show('发送消息给${teacher.name}','message/send?recvId=${teacher.id}',300,300);">类别关联</a></li>
+                    <li><a onclick="layer_show('添加商品类别','freedomarmy/admin/commodityType/show',500,400);">新增类别</a></li>
+                    <li><a _href="freedomarmy/admin/commodityType/match" href="javascript:;">类别关联</a></li>
                 </ul>
             </dd>
         </dl>
@@ -158,7 +152,7 @@
     <div id="Hui-tabNav" class="Hui-tabNav">
         <div class="Hui-tabNav-wp">
             <ul id="min_title_list" class="acrossTab cl">
-                <li class="active"><span title="我的桌面" data-href="notice/notice-list">通知公告</span><em></em></li>
+                <li class="active"><span title="我的桌面" data-href="${pageContext.request.contextPath}/notice/notice-list">通知公告</span><em></em></li>
             </ul>
         </div>
         <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
@@ -173,50 +167,9 @@
     <!--这后面追加代码-->
 
 </section>
-<script type="text/javascript" src="res/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="res/lib/layer/1.9.3/layer.js"></script>
-<script type="text/javascript" src="res/js/H-ui.js"></script>
-<script type="text/javascript" src="res/js/H-ui.admin.js"></script>
-<script type="text/javascript">
-    function article_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-    function picture_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-    function product_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-    function member_add(title, url, w, h) {
-        layer_show(title, url, w, h);
-    }
-    function getAmount() {
-        $.ajax({
-            type: 'GET',
-            url: 'message/unreadAmount',
-            success: function (data) {
-                var amount = data['msg'];
-            },
-            error: function () {
-                alert("异常");
-            }
-        });
-    }
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/H-ui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/H-ui.admin.js"></script>
 </body>
 </html>
