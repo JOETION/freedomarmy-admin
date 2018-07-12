@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -76,9 +77,9 @@
             <dd>
                 <ul>
 
-                    <li><a onclick="layer_show('添加课题','issue/create',550,320);">发货</a></li>
-                    <li><a _href="degree/getStudentList" href="javascript:void(0)">查询</a></li>
-                    <li><a onclick="layer_show('导师资料','issue/getMyTutor',400,400);">确认退款</a></li>
+                    <%--<li><a onclick="layer_show('发货管理','#',550,320);">发货</a></li>--%>
+                    <li><a _href="${pageContext.request.contextPath}/freedomarmy/admin/order/list" href="javascript:void(0)">查询</a></li>
+                    <%--<li><a onclick="layer_show('退款管理','order_list',400,400);">确认退款</a></li>--%>
                 </ul>
             </dd>
         </dl>
@@ -114,7 +115,7 @@
                 </ul>
             </dd>
         </dl>
-        </c:if>
+        <%--</c:if>--%>
 
 
         <dl>
