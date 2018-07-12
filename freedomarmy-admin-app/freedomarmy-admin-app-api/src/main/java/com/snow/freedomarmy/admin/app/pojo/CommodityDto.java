@@ -13,6 +13,7 @@ public class CommodityDto {
     private int commodityStock;
     private int commodityIntegral;
     private String commodityImage;
+    private int state;
 
     private CommodityDto(Builder builder) {
         this.commodityImage = builder.commodityImage;
@@ -22,6 +23,11 @@ public class CommodityDto {
         this.commodityId = builder.commodityId;
         this.commodityStock = builder.commodityStock;
         this.commodityIntegral = builder.commodityIntegral;
+        this.state = builder.state;
+    }
+
+    public int getState() {
+        return state;
     }
 
     public int getCommodityId() {
@@ -62,6 +68,7 @@ public class CommodityDto {
         private int commodityId;
         private int commodityStock;
         private int commodityIntegral;
+        private int state;
 
         public CommodityDto build() {
             return new CommodityDto(this);
@@ -74,6 +81,11 @@ public class CommodityDto {
 
         public Builder setCommodityPrice(String commodityPrice) {
             this.commodityPrice = commodityPrice;
+            return this;
+        }
+
+        public Builder setState(int state) {
+            this.state = state;
             return this;
         }
 

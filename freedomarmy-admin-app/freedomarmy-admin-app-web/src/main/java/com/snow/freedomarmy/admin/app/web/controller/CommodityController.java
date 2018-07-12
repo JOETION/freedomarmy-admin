@@ -11,6 +11,7 @@ package com.snow.freedomarmy.admin.app.web.controller;
 import com.snow.freedomarmy.admin.app.api.CommodityService;
 import com.snow.freedomarmy.admin.app.api.CommodityTypeService;
 import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
+import com.snow.freedomarmy.admin.app.pojo.CommodityTypeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/freedomarmy/admin/commodity")
@@ -41,6 +45,13 @@ public class CommodityController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("commodity_list");
         modelAndView.addObject("commodity", commodityService.getAllCommodity());
+        List<CommodityTypeDto> types = commodityTypeService.getAllType();
+        int length = types.size();
+        Map<Integer, String> map = new HashMap<>();
+        for (int i = 0; i < length - 1; i++) {
+            map.put(i, types.get(i).getTypeName());
+        }
+        modelAndView.addObject("type", map);
         return modelAndView;
     }
 
@@ -72,6 +83,19 @@ public class CommodityController {
         return commodityService.deleteCommodityById(commodityId);
     }
 
+    @RequestMapping(value = "/remove", method = RequestMethod.GET)
+    @ResponseBody
+    public String removeCommodityById(@RequestParam("commodityId") int commodityId) {
+        return commodityService.removeCommodityById(commodityId);
+    }
+
+
+    @RequestMapping(value = "/recycle", method = RequestMethod.GET)
+    @ResponseBody
+    public String recycleCommodityById(@RequestParam("commodityId") int commodityId) {
+        return commodityService.recycleCommodityById(commodityId);
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public String updateCommodity(@RequestBody CommodityDto commodityDto) {
@@ -86,22 +110,5 @@ public class CommodityController {
 
     }
 
-  /*  private boolean saveAttaches(int id, MultipartFile[] topPic, MultipartFile[] contentPic, MultipartFile[] video) {
-        // 判断文件是否为空
-        if (!topPic.isEmpty() && topPic.getOriginalFilename().toLowerCase().endsWith(FILE_TYPE_JPG)) {
-            try {
-                File upload = new File(savePath +);
-                if (upload.exists()) {
-                    upload.delete();
-                } else {
-                    upload.createNewFile();
-                }
-            } catch (Exception e) {
-                System.out.println("保存文件失败!");
-            }
-        }
-    }
-
-*/
 
 }

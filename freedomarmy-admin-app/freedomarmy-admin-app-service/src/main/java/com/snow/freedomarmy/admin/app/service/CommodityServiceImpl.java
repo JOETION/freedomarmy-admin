@@ -72,6 +72,7 @@ public class CommodityServiceImpl implements CommodityService {
         int commodityType = commodityDto.getCommodityType();
         commodity.setParent(commodityType);
         commodity.setGrandpa(commodityTypeService.getGrapaById(commodityType));
+        commodity.setDeleted(commodityDto.getState());
         int id = commodityMapper.insertSelective(commodity);
         return id;
     }
@@ -79,6 +80,24 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public String deleteCommodityById(int id) {
         commodityMapper.deleteByPrimaryKey(id);
+        return "success";
+    }
+
+    @Override
+    public String removeCommodityById(int commodityId) {
+        Commodity commodity = new Commodity();
+        commodity.setId(commodityId);
+        commodity.setDeleted(1);
+        commodityMapper.updateByPrimaryKeySelective(commodity);
+        return "success";
+    }
+
+    @Override
+    public String recycleCommodityById(int commodityId) {
+        Commodity commodity = new Commodity();
+        commodity.setId(commodityId);
+        commodity.setDeleted(0);
+        commodityMapper.updateByPrimaryKeySelective(commodity);
         return "success";
     }
 
@@ -92,6 +111,7 @@ public class CommodityServiceImpl implements CommodityService {
         int commodityType = commodityDto.getCommodityType();
         commodity.setParent(commodityType);
         commodity.setGrandpa(commodityTypeService.getGrapaById(commodityType));
+        commodity.setDeleted(commodityDto.getState());
         CommodityExample commodityExample = new CommodityExample();
         commodityExample.createCriteria().andIdEqualTo(commodityDto.getCommodityId());
         commodityMapper.updateByExampleSelective(commodity, commodityExample);
@@ -108,6 +128,7 @@ public class CommodityServiceImpl implements CommodityService {
                     .setCommodityName(commodity.getCommodityName())
                     .setCommodityPrice(commodity.getCommodityPrice())
                     .setCommodityType(commodity.getParent())
+                    .setState(commodity.getDeleted())
                     .build();
             list.add(commodityDto);
         }
@@ -148,6 +169,7 @@ public class CommodityServiceImpl implements CommodityService {
                     .setCommodityStock(commodity.getStock())
                     .setCommodityImage(commodity.getCommodityName())
                     .setCommodityIntegral(commodity.getIntegral() == null ? 0 : commodity.getIntegral())
+                    .setState(commodity.getDeleted())
                     .build();
             commodityDtos.add(commodityDto);
         }

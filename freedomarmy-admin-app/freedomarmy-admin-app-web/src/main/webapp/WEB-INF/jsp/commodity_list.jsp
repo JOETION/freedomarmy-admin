@@ -59,11 +59,32 @@
                     <td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('商品编辑','picture-show.html',${item.commodityId})">${item.commodityName}</a></td>
                     <td class="text-c">${item.commodityPrice}</td>
                     <td><a href="javascript:;" onClick="picture_edit('商品编辑','./picture-show.jsp',${item.commodityId})"><img width="80" class="picture-thumb" src="${item.commodityImage}"></a></td>
-                    <td>${item.commodityType}</td>
+                    <td>${type.get(item.commodityType)}</td>
                     <td>${item.commodityStock}</td>
                     <td>${item.commodityIntegral}</td>
-                    <td class="td-status"><span class="label label-success radius">已发布</span></td>
-                    <td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,${item.commodityId})" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('商品编辑','./picture-add.jsp',${item.commodityId})" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'${item.commodityId}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                    <td class="td-status">
+                        <c:choose>
+                            <c:when test="${item.state==0}">
+                                <span class="label label-success radius"> 已上架</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="label label-default radius"> 已下架</span>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+
+                    <td class="td-manage">
+                        <c:choose>
+                            <c:when test="${item.state==0}">
+                                <a style="text-decoration:none" onClick="picture_stop(this,${item.commodityId})" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('商品编辑','./picture-add.jsp',${item.commodityId})" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'${item.commodityId}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                            </c:when>
+
+                            <c:otherwise>
+                                <a style="text-decoration:none" onClick="picture_start(this,${item.commodityId})" href="javascript:;" title="上架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('商品编辑','./picture-add.jsp',${item.commodityId})" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'${item.commodityId}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -84,6 +105,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/laypage/1.2/laypage.js"></script>
 
 <script type="text/javascript">
+    var picStart;
+    var picStop;
     $('.table-sort').dataTable({
         "aaSorting": [[1, "desc"]],//默认第几个排序
         "bStateSave": true,//状态保存
@@ -135,21 +158,49 @@
 
     /*图片-下架*/
     function picture_stop(obj, id) {
+        picStop = id;
         layer.confirm('确认要下架吗？', function (index) {
-            $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-            $(obj).remove();
-            layer.msg('已下架!', {icon: 5, time: 1000});
+            $.ajax({
+                type: "get",
+                url: "/freedomarmy/admin/commodity/remove?commodityId=" + id,
+                dataType: "text",
+                async: false,
+                success: function (data) {
+                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_start(this,picStop)" href="javascript:;" title="上架"><i class="Hui-iconfont">&#xe603;</i></a>');
+                    $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已下架</span>');
+                    $(obj).remove();
+                    layer.msg('已下架!', {icon: 5, time: 1000});
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("提交失败，原因：" + errorThrown);
+                    return false;
+                }
+            });
+
         });
     }
 
-    /*图片-发布*/
+    /*图片-上架*/
     function picture_start(obj, id) {
-        layer.confirm('确认要发布吗？', function (index) {
-            $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-            $(obj).remove();
-            layer.msg('已发布!', {icon: 6, time: 1000});
+        picStart = id;
+        layer.confirm('确认要上架吗？', function (index) {
+            $.ajax({
+                type: "get",
+                url: "/freedomarmy/admin/commodity/recycle?commodityId=" + id,
+                dataType: "text",
+                async: false,
+                success: function (data) {
+                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_stop(this,picStart)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
+                    $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已上架</span>');
+                    $(obj).remove();
+                    layer.msg('已上架!', {icon: 6, time: 1000});
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("提交失败，原因：" + errorThrown);
+                    return false;
+                }
+            });
+
         });
     }
 
