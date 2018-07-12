@@ -454,63 +454,243 @@ public class CommodityExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentIsNull() {
-            addCriterion("commodity_type_parent is null");
+        public Criteria andParentIsNull() {
+            addCriterion("parent is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentIsNotNull() {
-            addCriterion("commodity_type_parent is not null");
+        public Criteria andParentIsNotNull() {
+            addCriterion("parent is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentEqualTo(Integer value) {
-            addCriterion("commodity_type_parent =", value, "commodityTypeParent");
+        public Criteria andParentEqualTo(Integer value) {
+            addCriterion("parent =", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentNotEqualTo(Integer value) {
-            addCriterion("commodity_type_parent <>", value, "commodityTypeParent");
+        public Criteria andParentNotEqualTo(Integer value) {
+            addCriterion("parent <>", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentGreaterThan(Integer value) {
-            addCriterion("commodity_type_parent >", value, "commodityTypeParent");
+        public Criteria andParentGreaterThan(Integer value) {
+            addCriterion("parent >", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentGreaterThanOrEqualTo(Integer value) {
-            addCriterion("commodity_type_parent >=", value, "commodityTypeParent");
+        public Criteria andParentGreaterThanOrEqualTo(Integer value) {
+            addCriterion("parent >=", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentLessThan(Integer value) {
-            addCriterion("commodity_type_parent <", value, "commodityTypeParent");
+        public Criteria andParentLessThan(Integer value) {
+            addCriterion("parent <", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentLessThanOrEqualTo(Integer value) {
-            addCriterion("commodity_type_parent <=", value, "commodityTypeParent");
+        public Criteria andParentLessThanOrEqualTo(Integer value) {
+            addCriterion("parent <=", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentIn(List<Integer> values) {
-            addCriterion("commodity_type_parent in", values, "commodityTypeParent");
+        public Criteria andParentIn(List<Integer> values) {
+            addCriterion("parent in", values, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentNotIn(List<Integer> values) {
-            addCriterion("commodity_type_parent not in", values, "commodityTypeParent");
+        public Criteria andParentNotIn(List<Integer> values) {
+            addCriterion("parent not in", values, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentBetween(Integer value1, Integer value2) {
-            addCriterion("commodity_type_parent between", value1, value2, "commodityTypeParent");
+        public Criteria andParentBetween(Integer value1, Integer value2) {
+            addCriterion("parent between", value1, value2, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityTypeParentNotBetween(Integer value1, Integer value2) {
-            addCriterion("commodity_type_parent not between", value1, value2, "commodityTypeParent");
+        public Criteria andParentNotBetween(Integer value1, Integer value2) {
+            addCriterion("parent not between", value1, value2, "parent");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaIsNull() {
+            addCriterion("grandpa is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaIsNotNull() {
+            addCriterion("grandpa is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaEqualTo(Integer value) {
+            addCriterion("grandpa =", value, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaNotEqualTo(Integer value) {
+            addCriterion("grandpa <>", value, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaGreaterThan(Integer value) {
+            addCriterion("grandpa >", value, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaGreaterThanOrEqualTo(Integer value) {
+            addCriterion("grandpa >=", value, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaLessThan(Integer value) {
+            addCriterion("grandpa <", value, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaLessThanOrEqualTo(Integer value) {
+            addCriterion("grandpa <=", value, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaIn(List<Integer> values) {
+            addCriterion("grandpa in", values, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaNotIn(List<Integer> values) {
+            addCriterion("grandpa not in", values, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaBetween(Integer value1, Integer value2) {
+            addCriterion("grandpa between", value1, value2, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andGrandpaNotBetween(Integer value1, Integer value2) {
+            addCriterion("grandpa not between", value1, value2, "grandpa");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockIsNull() {
+            addCriterion("stock is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockIsNotNull() {
+            addCriterion("stock is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockEqualTo(Integer value) {
+            addCriterion("stock =", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockNotEqualTo(Integer value) {
+            addCriterion("stock <>", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockGreaterThan(Integer value) {
+            addCriterion("stock >", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockGreaterThanOrEqualTo(Integer value) {
+            addCriterion("stock >=", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockLessThan(Integer value) {
+            addCriterion("stock <", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockLessThanOrEqualTo(Integer value) {
+            addCriterion("stock <=", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockIn(List<Integer> values) {
+            addCriterion("stock in", values, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockNotIn(List<Integer> values) {
+            addCriterion("stock not in", values, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockBetween(Integer value1, Integer value2) {
+            addCriterion("stock between", value1, value2, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockNotBetween(Integer value1, Integer value2) {
+            addCriterion("stock not between", value1, value2, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralIsNull() {
+            addCriterion("integral is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralIsNotNull() {
+            addCriterion("integral is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralEqualTo(Integer value) {
+            addCriterion("integral =", value, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralNotEqualTo(Integer value) {
+            addCriterion("integral <>", value, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralGreaterThan(Integer value) {
+            addCriterion("integral >", value, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralGreaterThanOrEqualTo(Integer value) {
+            addCriterion("integral >=", value, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralLessThan(Integer value) {
+            addCriterion("integral <", value, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralLessThanOrEqualTo(Integer value) {
+            addCriterion("integral <=", value, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralIn(List<Integer> values) {
+            addCriterion("integral in", values, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralNotIn(List<Integer> values) {
+            addCriterion("integral not in", values, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralBetween(Integer value1, Integer value2) {
+            addCriterion("integral between", value1, value2, "integral");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralNotBetween(Integer value1, Integer value2) {
+            addCriterion("integral not between", value1, value2, "integral");
             return (Criteria) this;
         }
     }

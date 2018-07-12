@@ -1,41 +1,22 @@
 package com.snow.freedomarmy.admin.app.api;
 
-/* 				    
- **********************************************
- *      DATE           PERSON       REASON
- *    2018/7/8          FXY        Created
- **********************************************
- */
-
 import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
+import com.snow.freedomarmy.admin.app.pojo.OrdersDto;
+
+import java.util.List;
 
 /**
- * 商品服务
+ * @Auther: Wei-Peng
+ * @Date: 2018/7/10 18:46
+ * @Description:
  */
-public interface CommodityService {
-
-
+public interface CommodityService
+{
     /**
-     * 添加商品
      *
-     * @param commodityDto
+     * @param ordersDtos
+     * @return
+     * 通过Orders 获取id
      */
-    public String addCommodity(CommodityDto commodityDto);
-
-
-    /**
-     * 通姑商品编号删除商品
-     *
-     * @param commodityId
-     */
-    public String deleteCommodityById(int commodityId);
-
-
-    /**
-     * 更新商品信息
-     *
-     * @param commodityDto
-     */
-    public String updateCommodity(CommodityDto commodityDto);
-
+    List<CommodityDto> OrdersToCommodityLsit(List<OrdersDto> ordersDtos);
 }

@@ -1,6 +1,6 @@
 package com.snow.freedomarmy.admin.app.web.controller;
 
-/* 				    
+/*
  **********************************************
  *      DATE           PERSON       REASON
  *    2018/7/8          FXY        Created
@@ -36,7 +36,7 @@ public class AdminController {
         if (adminByName != null) {
             modelAndView.setViewName("index");
             modelAndView.addObject("admin", adminByName);
-        }else{
+        } else {
             modelAndView.setViewName("redirect:/freedomarmy/admin");
         }
         return modelAndView;
