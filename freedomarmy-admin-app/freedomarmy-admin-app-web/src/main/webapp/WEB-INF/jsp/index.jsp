@@ -83,14 +83,11 @@
                 </ul>
             </dd>
         </dl>
-
         <dl>
             <dt><i class="Hui-iconfont">&#xe611;</i> 商品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a onclick="layer_show('添加商品','freedomarmy/admin/commodity/add/show',550,320);">新增</a></li>
-                    <li><a _href="notice/add-notice" href="javascript:;">上架</a></li>
-                    <li><a _href="notice/del-notice-list" href="javascript:;">下架</a></li>
+                    <li><a _href="freedomarmy/admin/commodity/manage/show" href="javascript:;">管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -157,7 +154,7 @@
     <div id="Hui-tabNav" class="Hui-tabNav">
         <div class="Hui-tabNav-wp">
             <ul id="min_title_list" class="acrossTab cl">
-                <li class="active"><span title="我的桌面" data-href="notice/notice-list">通知公告</span><em></em></li>
+                <li class="active"><span title="我的桌面" data-href="${pageContext.request.contextPath}/notice/notice-list">通知公告</span><em></em></li>
             </ul>
         </div>
         <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
@@ -176,46 +173,5 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/lib/layer/1.9.3/layer.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/H-ui.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/res/js/H-ui.admin.js"></script>
-<script type="text/javascript">
-    function article_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-    function picture_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-    function product_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-    function member_add(title, url, w, h) {
-        layer_show(title, url, w, h);
-    }
-    function getAmount() {
-        $.ajax({
-            type: 'GET',
-            url: 'message/unreadAmount',
-            success: function (data) {
-                var amount = data['msg'];
-            },
-            error: function () {
-                alert("异常");
-            }
-        });
-    }
-</script>
 </body>
 </html>

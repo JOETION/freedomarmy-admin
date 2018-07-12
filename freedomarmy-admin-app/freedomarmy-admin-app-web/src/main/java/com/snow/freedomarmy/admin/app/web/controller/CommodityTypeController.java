@@ -42,7 +42,7 @@ public class CommodityTypeController {
     public ModelAndView show() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("commodity_type_add");
-        modelAndView.addObject("type", commodityTypeService.getAllType());
+        modelAndView.addObject("type", commodityTypeService.getAllParentType());
         return modelAndView;
     }
 

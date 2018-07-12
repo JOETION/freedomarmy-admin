@@ -25,9 +25,9 @@ public interface CommodityTypeService {
     /**
      * 通过商品类型编号删除商品类型
      *
-     * @param commodityId
+     * @param id
      */
-    public String deleteCommodityTypeById(int commodityId);
+    public String deleteCommodityTypeById(int id);
 
     /**
      * 通过商品类型编号更新商品类型
@@ -41,10 +41,20 @@ public interface CommodityTypeService {
      *
      * @return
      */
-    public List<CommodityTypeDto> getAllType();
+    public List<CommodityTypeDto> getAllParentType();
 
     /**
      * 得到某些商品的类型信息
      */
     public CommodityTypeDto getTypeById(int id);
+
+    /**
+     * 得到所有类型
+     */
+    public List<CommodityTypeDto> getAllType();
+
+    /**
+     * 通过类型编号得到超类型编号
+     */
+    public int getGrapaById(int id);
 }

@@ -16,6 +16,7 @@
         <property name="mapperLocations">
             <array>
                 <value>classpath*:mybatis/sqlmap/*.xml</value>
+                <value>classpath*:mybatis/sqlmap/extend/*.xml</value>
             </array>
         </property>
     </bean>

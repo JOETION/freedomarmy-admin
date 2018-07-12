@@ -22,7 +22,7 @@ public interface CommodityService {
      *
      * @param commodityDto
      */
-    public String addCommodity(CommodityDto commodityDto);
+    public int addCommodity(CommodityDto commodityDto);
 
 
     /**
@@ -59,6 +59,11 @@ public interface CommodityService {
     /**
      * 更新商品的类型
      */
-    public String updateCommodityType(int commodityId,int commodityTypeId);
+    public String updateCommodityType(int commodityId, int commodityTypeId, int grapaType);
+
+    /**
+     * 得到所有商品信息
+     */
+    public List<CommodityDto> getAllCommodity();
 
 }

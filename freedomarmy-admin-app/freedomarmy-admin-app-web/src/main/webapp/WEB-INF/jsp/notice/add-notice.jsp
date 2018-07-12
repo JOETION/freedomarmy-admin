@@ -29,7 +29,6 @@
 <body>
 ${msg}
 	<div class="pd-20">
-		<!--  -->
 		<form action="notice/add-notice" method="post"
 			class="form form-horizontal" id="form-article-add">
 			<div class="row cl">

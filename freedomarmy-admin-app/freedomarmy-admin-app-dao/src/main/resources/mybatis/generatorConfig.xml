@@ -38,15 +38,7 @@
             <generatedKey column="id" sqlStatement="MySql"
                           identity="true"/>
         </table>
-        <table tableName="commodity_comment">
-            <generatedKey column="id" sqlStatement="MySql"
-                          identity="true"/>
-        </table>
-        <table tableName="commodity_image">
-            <generatedKey column="id" sqlStatement="MySql"
-                          identity="true"/>
-        </table>
-        <table tableName="commodity_type">
+        <table tableName="orders">
             <generatedKey column="id" sqlStatement="MySql"
                           identity="true"/>
         </table>

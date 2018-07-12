@@ -16,11 +16,13 @@ import com.snow.freedomarmy.admin.app.pojo.CommodityDto;
 import com.snow.freedomarmy.admin.app.pojo.CommodityTypeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service("commodityTypeService")
+@Transactional
 public class CommodityTypeServiceImpl implements CommodityTypeService {
 
     @Autowired
@@ -56,8 +58,44 @@ public class CommodityTypeServiceImpl implements CommodityTypeService {
     }
 
     @Override
+    public List<CommodityTypeDto> getAllParentType() {
+        CommodityTypeExample commodityTypeExample = new CommodityTypeExample();
+        commodityTypeExample.setOrderByClause("id asc");
+        commodityTypeExample.createCriteria();
+        List<CommodityType> commodityTypes = commodityTypeMapper.selectByExample(commodityTypeExample);
+        List<CommodityTypeDto> commodityTypeDtos = new ArrayList<>();
+        for (CommodityType commodityType : commodityTypes) {
+            if (commodityType.getParent() == 0) {
+                CommodityTypeDto commodityTypeDto = new CommodityTypeDto();
+                commodityTypeDto.setId(commodityType.getId());
+                commodityTypeDto.setType(commodityType.getParent());
+                commodityTypeDto.setTypeName(commodityType.getTypeName());
+                commodityTypeDtos.add(commodityTypeDto);
+            }
+        }
+        return commodityTypeDtos;
+    }
+
+    /**
+     * 可能有重复的，故不用list查询
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public CommodityTypeDto getTypeById(int id) {
+        CommodityType commodityType = commodityTypeMapper.selectByPrimaryKey(id);
+        CommodityTypeDto commodityTypeDto = new CommodityTypeDto();
+        commodityTypeDto.setId(commodityType.getId());
+        commodityTypeDto.setType(commodityType.getParent());
+        commodityTypeDto.setTypeName(commodityType.getTypeName());
+        return commodityTypeDto;
+    }
+
+    @Override
     public List<CommodityTypeDto> getAllType() {
         CommodityTypeExample commodityTypeExample = new CommodityTypeExample();
+        commodityTypeExample.setOrderByClause("id asc");
         commodityTypeExample.createCriteria();
         List<CommodityType> commodityTypes = commodityTypeMapper.selectByExample(commodityTypeExample);
         List<CommodityTypeDto> commodityTypeDtos = new ArrayList<>();
@@ -71,19 +109,15 @@ public class CommodityTypeServiceImpl implements CommodityTypeService {
         return commodityTypeDtos;
     }
 
-    /**
-     * 可能有重复的，故不用list查询
-     * @param id
-     * @return
-     */
     @Override
-    public CommodityTypeDto getTypeById(int id) {
-        CommodityType commodityType = commodityTypeMapper.selectByPrimaryKey(id);
-        CommodityTypeDto commodityTypeDto = new CommodityTypeDto();
-        commodityTypeDto.setId(commodityType.getId());
-        commodityTypeDto.setType(commodityType.getParent());
-        commodityTypeDto.setTypeName(commodityType.getTypeName());
-        return commodityTypeDto;
+    public int getGrapaById(int id) {
+        CommodityTypeExample commodityTypeExample = new CommodityTypeExample();
+        commodityTypeExample.createCriteria().andIdEqualTo(id);
+        List<CommodityType> commodityTypes = commodityTypeMapper.selectByExample(commodityTypeExample);
+        if (commodityTypes != null && commodityTypes.size() >= 1) {
+            return commodityTypes.get(0).getParent();
+        }
+        return -1;
     }
 
 }

@@ -20,7 +20,25 @@ public class CommodityDto implements Serializable {
     private String commodityPrice;
     private int commodityType;
     private String commodityImage;
+    private int commodityStock;
+    private int commodityIntegral;
 
+
+    public int getCommodityStock() {
+        return commodityStock;
+    }
+
+    public void setCommodityStock(int commodityStock) {
+        this.commodityStock = commodityStock;
+    }
+
+    public int getCommodityIntegral() {
+        return commodityIntegral;
+    }
+
+    public void setCommodityIntegral(int commodityIntegral) {
+        this.commodityIntegral = commodityIntegral;
+    }
 
     public void setCommodityId(int commodityId) {
         this.commodityId = commodityId;
@@ -48,6 +66,8 @@ public class CommodityDto implements Serializable {
         this.commodityPrice = builder.commodityPrice;
         this.commodityType = builder.commodityType;
         this.commodityId = builder.commodityId;
+        this.commodityStock = builder.commodityStock;
+        this.commodityIntegral = builder.commodityIntegral;
     }
 
     public int getCommodityId() {
@@ -81,6 +101,8 @@ public class CommodityDto implements Serializable {
         private int commodityType;
         private String commodityImage;
         private int commodityId;
+        private int commodityStock;
+        private int commodityIntegral;
 
         public CommodityDto build() {
             return new CommodityDto(this);
@@ -91,6 +113,15 @@ public class CommodityDto implements Serializable {
             return this;
         }
 
+        public Builder setCommodityStock(int commodityStock) {
+            this.commodityStock = commodityStock;
+            return this;
+        }
+
+        public Builder setCommodityIntegral(int commodityIntegral) {
+            this.commodityIntegral = commodityIntegral;
+            return this;
+        }
 
         public Builder setCommodityPrice(String commodityPrice) {
             this.commodityPrice = commodityPrice;

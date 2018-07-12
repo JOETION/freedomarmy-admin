@@ -15,10 +15,12 @@ import com.snow.freedomarmy.admin.app.dao.mapper.AdminMapper;
 import com.snow.freedomarmy.admin.app.pojo.AdminDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service("adminService")
+@Transactional
 public class AdminServiceImpl implements AdminService {
 
     @Autowired
@@ -28,7 +30,7 @@ public class AdminServiceImpl implements AdminService {
     public AdminDto getAdminByName(String loginName, String password) {
 
         AdminExample adminExample = new AdminExample();
-        adminExample.createCriteria().andLoginNameEqualTo(loginName).andPasswordEqualTo(password);
+        adminExample.createCriteria().andLoginNameEqualTo(loginName).andPasswordEqualTo(password).andDeletedEqualTo(0);
         List<Admin> admins = adminMapper.selectByExample(adminExample);
         //此处可以抛异常进行处理
         if (admins == null || admins.size() == 0) {
